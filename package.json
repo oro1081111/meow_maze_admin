@@ -1,0 +1,8 @@
+{
+  "name": "meow-maze-admin",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node tests/admin-check.mjs"
+  }
+}

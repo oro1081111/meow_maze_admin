@@ -1,0 +1,47 @@
+(function(root){
+  "use strict";
+  const COLORS=["R","B","G","Y","P"],SLOTS=[
+    {id:"0,0",q:0,r:0,x:583,y:667},{id:"-1,0",q:-1,r:0,x:297,y:667},{id:"1,0",q:1,r:0,x:869,y:667},
+    {id:"-1,1",q:-1,r:1,x:440,y:420},{id:"0,1",q:0,r:1,x:726,y:420},{id:"0,-1",q:0,r:-1,x:440,y:914},{id:"1,-1",q:1,r:-1,x:726,y:914}
+  ],PALETTES={
+    R:{move:["#ff777d","#9c3d43"],rotate:["#ff777d","#9c3d43"]},B:{move:["#7398f0","#2c56b6"],rotate:["#7398f0","#2c56b6"]},
+    G:{move:["#5debae","#008c55"],rotate:["#5debae","#008c55"]},Y:{move:["#ffe36d","#c9aa12"],rotate:["#ffe36d","#c9aa12"]},
+    P:{move:["#f09af0","#a842a6"],rotate:["#f09af0","#a842a6"]}
+  },DEFAULT_POS={G:"-1,1",B:"-1,0",Y:"0,0",P:"1,0",R:"1,-1"};
+  const freshState=()=>({number:1,bestMoves:null,start:"Y",positions:{...DEFAULT_POS},plateModes:{R:"move",B:"move",G:"move",Y:"move",P:"rotate"},solution:null});
+  const slot=id=>SLOTS.find(s=>s.id===id);
+  function moveTile(positions,color,target){const next={...positions},other=COLORS.find(c=>c!==color&&next[c]===target),from=next[color];next[color]=target;if(other)next[other]=from;return next}
+  function modeOf(state){const set=new Set(Object.values(state.plateModes));return set.size===1?[...set][0]:"mixed"}
+  function puzzleId(state){return`${modeOf(state)}-${String(state.number).padStart(2,"0")}`}
+  function puzzleData(state){return{id:puzzleId(state),number:state.number,bestMoves:state.bestMoves,mode:modeOf(state),start:state.start,positions:Object.fromEntries(COLORS.map(c=>{const s=slot(state.positions[c]);return[c,[s.q,s.r]]})),plateModes:{...state.plateModes},rotations:Object.fromEntries(COLORS.map(c=>[c,0]))}}
+  function mark(face){return face==="move"?`<g transform="translate(0 -125)"><rect x="-21" y="-18" width="42" height="36" rx="12" fill="#fbfaf2" stroke="#171612" stroke-width="3"/><path d="M-14 0H14M-14 0l6-6M-14 0l6 6M14 0l-6-6M14 0l-6 6" fill="none" stroke="#171612" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></g>`:`<g transform="translate(0 -125)"><circle r="19" fill="#fbfaf2" stroke="#171612" stroke-width="3"/><path d="M11-8A14 14 0 1 0 11 9M11 9 5 5M11 9 7 15" fill="none" stroke="#171612" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></g>`}
+  function tile(c,state){const p=slot(state.positions[c]),face=state.plateModes[c],[left,right]=PALETTES[c].move;return`<g id="tile-${c}" class="tile" data-color="${c}" data-face="${face}" transform="translate(${p.x} ${p.y})"><path d="M0-165-143-82.5V82.5L0 165Z" fill="${left}"/><path d="M0-165 143-82.5V82.5L0 165Z" fill="${right}"/>${mark(face)}<circle cx="0" cy="140" r="13" fill="#171612"/></g>`}
+  function boardOffset(state,editor=false){if(editor)return{x:0,y:0};const points=COLORS.map(c=>slot(state.positions[c])),minX=Math.min(...points.map(p=>p.x-143)),maxX=Math.max(...points.map(p=>p.x+143)),minY=Math.min(...points.map(p=>p.y-165)),maxY=Math.max(...points.map(p=>p.y+165));return{x:600-(minX+maxX)/2,y:750-(minY+maxY)/2}}
+  function buildSvg(state,editor=false){const n=String(state.number).padStart(2,"0"),start=slot(state.positions[state.start]),cat=root.CAT_DATA_URL||"",best=state.bestMoves??"—",offset=boardOffset(state,editor);return`<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img"><title>迷路の貓題目 ${n}</title><rect width="1200" height="1200" fill="#fbfaf2"/>${editor?`<g class="editor-only" fill="none" stroke="#8f8772" stroke-width="3" stroke-dasharray="10 9" opacity=".42">${SLOTS.map(s=>`<path class="slot" data-slot="${s.id}" d="M${s.x} ${s.y-165}l143 82.5v165L${s.x} ${s.y+165}l-143-82.5v-165Z"/>`).join("")}</g>`:""}<g fill="#171612" font-family="Arial Black,Arial,sans-serif" font-weight="900"><text x="86" y="126" font-size="22" letter-spacing="4">PUZZLE</text><text x="78" y="285" font-size="190">${n}</text></g><g><path d="M1010 82 1120 276 1010 326 900 276Z" fill="#8f9190"/><text x="1010" y="220" fill="#fff" font-family="Arial Black,Arial,sans-serif" font-size="110" font-weight="900" text-anchor="middle">${best}</text><text x="1010" y="274" fill="#fff" font-family="Arial,sans-serif" font-size="18" font-weight="700" letter-spacing="2" text-anchor="middle">BEST</text></g><g id="puzzle-board" transform="translate(${offset.x} ${offset.y})">${COLORS.map(c=>tile(c,state)).join("")}<g id="cat-start" data-start-tile="${state.start}" transform="translate(${start.x} ${start.y})"><image href="${cat}" x="-105" y="-105" width="210" height="210" preserveAspectRatio="xMidYMid meet"/></g></g></svg>`}
+  const api={COLORS,SLOTS,PALETTES,freshState,moveTile,modeOf,puzzleId,puzzleData,boardOffset,buildSvg};
+  if(typeof module!=="undefined")module.exports=api;root.MeowMazeEditor=api;
+  if(typeof document==="undefined")return;
+  let state=freshState(),drag=null,lastTap={color:null,time:0};
+  const host=document.querySelector("#boardHost"),status=document.querySelector("#editorStatus"),numberInput=document.querySelector("#puzzleNumber"),bestInput=document.querySelector("#bestMoves"),answer=document.querySelector("#answer"),solveButton=document.querySelector("#solvePuzzle");
+  function render(){host.innerHTML=buildSvg(state,true);bestInput.value=state.bestMoves??""}
+  function syncNumber(){state.number=Math.max(1,Number(numberInput.value)||1)}
+  function invalidate(message="題目已變更，請重新計算最佳解。") {state.bestMoves=null;state.solution=null;answer.value="";status.textContent=message;render()}
+  function point(svg,e){const pt=svg.createSVGPoint();pt.x=e.clientX;pt.y=e.clientY;return pt.matrixTransform(svg.getScreenCTM().inverse())}
+  function download(name,blob){const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);status.textContent=`已下載 ${name}`}
+  function json(name,data){download(name,new Blob([JSON.stringify(data,null,2)],{type:"application/json"}))}
+  numberInput.addEventListener("input",()=>{syncNumber();render()});
+  host.addEventListener("pointerdown",e=>{const cat=e.target.closest("#cat-start"),tileGroup=e.target.closest(".tile");if(!cat&&!tileGroup)return;const g=cat||tileGroup,svg=host.querySelector("svg"),p=point(svg,e),kind=cat?"cat":"tile",color=kind==="tile"?tileGroup.dataset.color:state.start,home=slot(state.positions[color]);drag={kind,color,g,svg,dx:p.x-home.x,dy:p.y-home.y,startX:e.clientX,startY:e.clientY,pointerId:e.pointerId};g.setPointerCapture(e.pointerId)});
+  host.addEventListener("pointermove",e=>{if(!drag||drag.pointerId!==e.pointerId)return;const p=point(drag.svg,e);drag.g.setAttribute("transform",`translate(${p.x-drag.dx} ${p.y-drag.dy})`)});
+  function drop(e){if(!drag||drag.pointerId!==e.pointerId)return;const current=drag,p=point(current.svg,e),x=p.x-current.dx,y=p.y-current.dy,moved=Math.hypot(e.clientX-current.startX,e.clientY-current.startY);drag=null;
+    if(current.kind==="cat"){const occupied=COLORS.map(c=>({color:c,...slot(state.positions[c])})),nearest=occupied.reduce((a,s)=>Math.hypot(s.x-x,s.y-y)<Math.hypot(a.x-x,a.y-y)?s:a);if(Math.hypot(nearest.x-x,nearest.y-y)<200&&nearest.color!==state.start){state.start=nearest.color;invalidate("貓咪起點已變更，請重新計算最佳解。");return}render();return}
+    if(moved<10){const now=Date.now();if(lastTap.color===current.color&&now-lastTap.time<420){state.plateModes[current.color]=state.plateModes[current.color]==="move"?"rotate":"move";lastTap={color:null,time:0};invalidate(`${current.color} 板塊已切換為${state.plateModes[current.color]==="move"?"平移":"旋轉"}。`);return}lastTap={color:current.color,time:now}}
+    const nearest=SLOTS.reduce((a,s)=>Math.hypot(s.x-x,s.y-y)<Math.hypot(a.x-x,a.y-y)?s:a);if(Math.hypot(nearest.x-x,nearest.y-y)<190&&state.positions[current.color]!==nearest.id){state.positions=moveTile(state.positions,current.color,nearest.id);invalidate();return}render()
+  }
+  host.addEventListener("pointerup",drop);host.addEventListener("pointercancel",()=>{drag=null;render()});
+  solveButton.onclick=()=>{syncNumber();solveButton.disabled=true;status.textContent="正在搜尋 6 步內的最短解…";setTimeout(()=>{try{const result=root.MeowMazeSolver.solve(puzzleData(state),6);state.solution=result;state.bestMoves=result.optimalSteps;answer.value=result.solution;status.textContent=result.status==="solved"?`已找到 ${result.optimalSteps} 步最佳解（檢查 ${result.visited} 個狀態）。`:result.solution;render()}catch(error){state.bestMoves=null;state.solution=null;answer.value="無法計算，請檢查題目配置。";status.textContent=error.message}finally{solveButton.disabled=false}},20)};
+  document.querySelector("#downloadSvg").onclick=()=>{syncNumber();download(`${puzzleId(state)}.svg`,new Blob([buildSvg(state)],{type:"image/svg+xml"}))};
+  document.querySelector("#downloadPng").onclick=()=>{syncNumber();const svg=buildSvg(state),url=URL.createObjectURL(new Blob([svg],{type:"image/svg+xml"})),img=new Image();img.onload=()=>{const c=document.createElement("canvas");c.width=c.height=1200;c.getContext("2d").drawImage(img,0,0);URL.revokeObjectURL(url);c.toBlob(b=>download(`${puzzleId(state)}.png`,b),"image/png")};img.src=url};
+  document.querySelector("#downloadPuzzle").onclick=()=>{syncNumber();json(`${puzzleId(state)}-puzzle.json`,puzzleData(state))};
+  document.querySelector("#downloadAnswer").onclick=()=>{syncNumber();if(!state.solution||state.solution.status!=="solved"){status.textContent="請先找出 6 步內的最佳解，才能輸出答案。";return}json(`${puzzleId(state)}-answer.json`,{[puzzleId(state)]:{bestMoves:state.bestMoves,solution:state.solution.solution,moves:state.solution.moves}})};
+  render();
+})(typeof globalThis!=="undefined"?globalThis:this);

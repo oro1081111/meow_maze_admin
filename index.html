@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#efe9b8">
+  <title>題目生成器｜迷路の貓</title>
+  <link rel="stylesheet" href="assets/puzzle-editor.css">
+</head>
+<body>
+  <header class="editor-header"><span>內部管理工具</span><strong>迷路の貓 <small>PUZZLE MAKER</small></strong></header>
+  <main class="editor-shell">
+    <section class="editor-controls">
+      <p class="eyebrow">獨立題目生成器</p>
+      <h1>建立新題目</h1>
+      <div class="field-grid">
+        <label>題號<input id="puzzleNumber" type="number" min="1" max="999" value="1"></label>
+        <label>最佳步數<input id="bestMoves" type="number" placeholder="計算後產生" readonly></label>
+      </div>
+      <button id="solvePuzzle" class="solve" type="button">計算最佳解（最多 6 步）</button>
+      <label>最佳解<textarea id="answer" rows="8" placeholder="排好板塊後，按下「計算最佳解」。" readonly></textarea></label>
+      <div class="export-grid">
+        <button id="downloadPng" type="button">下載 PNG</button>
+        <button id="downloadSvg" type="button">下載 SVG</button>
+        <button id="downloadPuzzle" type="button">題目 JSON</button>
+        <button id="downloadAnswer" type="button">答案 JSON</button>
+      </div>
+      <p id="editorStatus" class="status" aria-live="polite"></p>
+    </section>
+    <section class="editor-preview">
+      <div><p class="eyebrow">即時預覽</p><h2>直接在題目圖上操作</h2><p>拖曳板塊可換位；雙擊或快速點兩下板塊可切換平移／旋轉；拖曳貓咪可改變起點。</p></div>
+      <div id="boardHost" class="board-host" aria-label="可拖曳題目板塊"></div>
+    </section>
+  </main>
+  <script src="assets/cat-data.js"></script>
+  <script src="assets/puzzle-solver.js"></script>
+  <script src="assets/puzzle-editor.js"></script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-labelledby="svg-title svg-desc">
+  <title id="svg-title">迷路の貓題目 01</title>
+  <desc id="svg-desc">五片正向六角板塊的平移與旋轉混合示意，最佳步數 1，貓咪從黃色板塊開始。</desc>
+
+  <!--
+    可由未來的題目產生程式替換：
+    1. puzzle-number / best-moves：題號與最佳步數
+    2. tile-R / B / G / Y / P：用 class="tile move" 或 class="tile rotate" 指定板塊面
+    3. transform：只設定板塊位置，題目圖中的板塊一律保持正向
+    4. cat-start：移到貓咪起始板塊中心
+    5. puzzle-data：同步保存原始題目資料
+  -->
+  <metadata id="puzzle-data">{"id":"daily-demo-01","number":1,"bestMoves":1,"mode":"mixed","start":"Y","positions":{"G":[-1,1],"B":[-1,0],"Y":[0,0],"P":[1,0],"R":[1,-1]},"plateModes":{"G":"move","B":"move","Y":"move","P":"rotate","R":"rotate"},"rotations":{"R":0,"B":0,"G":0,"Y":0,"P":0}}</metadata>
+
+  <defs>
+    <style>
+      #tile-R.move .left,#tile-R.rotate .left{fill:#ff777d}#tile-R.move .right,#tile-R.rotate .right{fill:#9c3d43}
+      #tile-B.move .left,#tile-B.rotate .left{fill:#7398f0}#tile-B.move .right,#tile-B.rotate .right{fill:#2c56b6}
+      #tile-G.move .left,#tile-G.rotate .left{fill:#5debae}#tile-G.move .right,#tile-G.rotate .right{fill:#008c55}
+      #tile-Y.move .left,#tile-Y.rotate .left{fill:#ffe36d}#tile-Y.move .right,#tile-Y.rotate .right{fill:#c9aa12}
+      #tile-P.move .left,#tile-P.rotate .left{fill:#f09af0}#tile-P.move .right,#tile-P.rotate .right{fill:#a842a6}
+      .tile.move .mark-rotate,.tile.rotate .mark-move{display:none}
+    </style>
+    <symbol id="mark-move" viewBox="-34 -34 68 68">
+      <rect x="-32" y="-25" width="64" height="50" rx="18" fill="#fbfaf2" stroke="#171612" stroke-width="3"/>
+      <path d="M-22 0H22M-22 0l9-8M-22 0l9 8M22 0l-9-8M22 0l-9 8" fill="none" stroke="#171612" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="mark-rotate" viewBox="-34 -34 68 68">
+      <circle r="29" fill="#fbfaf2" stroke="#171612" stroke-width="3"/>
+      <path d="M17-12A21 21 0 1 0 18 14" fill="none" stroke="#171612" stroke-width="5" stroke-linecap="round"/>
+      <path d="M17 14 8 8M17 14 11 23" fill="none" stroke="#171612" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+  </defs>
+
+  <rect width="1200" height="1200" fill="#fbfaf2"/>
+
+  <g id="question-label" fill="#171612" font-family="Arial Black, Arial, sans-serif" font-weight="900">
+    <text x="86" y="126" font-size="22" letter-spacing="4">PUZZLE</text>
+    <text id="puzzle-number" x="78" y="285" font-size="190">01</text>
+  </g>
+
+  <g id="best-moves-badge">
+    <path d="M1010 82 1120 276 1010 326 900 276Z" fill="#8f9190"/>
+    <text id="best-moves" x="1010" y="220" fill="#fff" font-family="Arial Black, Arial, sans-serif" font-size="110" font-weight="900" text-anchor="middle">1</text>
+    <text x="1010" y="274" fill="#fff" font-family="Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="2" text-anchor="middle">BEST</text>
+  </g>
+
+  <!-- 平移與旋轉只用配色和小圖示區分；所有板塊保持正向且不加白色內框。 -->
+  <g id="tile-G" class="tile move" data-color="G" data-face="move" data-q="-1" data-r="1" data-rotation="0" transform="translate(440 420)">
+    <path class="left" d="M0-165-143-82.5V82.5L0 165Z"/><path class="right" d="M0-165 143-82.5V82.5L0 165Z"/>
+    <use class="mark-move" href="#mark-move" x="-21" y="-146" width="42" height="42"/><use class="mark-rotate" href="#mark-rotate" x="-21" y="-146" width="42" height="42"/>
+    <circle cx="0" cy="140" r="13" fill="#171612"/>
+  </g>
+  <g id="tile-B" class="tile move" data-color="B" data-face="move" data-q="-1" data-r="0" data-rotation="0" transform="translate(297 667)">
+    <path class="left" d="M0-165-143-82.5V82.5L0 165Z"/><path class="right" d="M0-165 143-82.5V82.5L0 165Z"/>
+    <use class="mark-move" href="#mark-move" x="-21" y="-146" width="42" height="42"/><use class="mark-rotate" href="#mark-rotate" x="-21" y="-146" width="42" height="42"/>
+    <circle cx="0" cy="140" r="13" fill="#171612"/>
+  </g>
+  <g id="tile-Y" class="tile move" data-color="Y" data-face="move" data-q="0" data-r="0" data-rotation="0" transform="translate(583 667)">
+    <path class="left" d="M0-165-143-82.5V82.5L0 165Z"/><path class="right" d="M0-165 143-82.5V82.5L0 165Z"/>
+    <use class="mark-move" href="#mark-move" x="-21" y="-146" width="42" height="42"/><use class="mark-rotate" href="#mark-rotate" x="-21" y="-146" width="42" height="42"/>
+    <circle cx="0" cy="140" r="13" fill="#171612"/>
+  </g>
+  <g id="tile-P" class="tile rotate" data-color="P" data-face="rotate" data-q="1" data-r="0" data-rotation="0" transform="translate(869 667)">
+    <path class="left" d="M0-165-143-82.5V82.5L0 165Z"/><path class="right" d="M0-165 143-82.5V82.5L0 165Z"/>
+    <use class="mark-move" href="#mark-move" x="-21" y="-146" width="42" height="42"/><use class="mark-rotate" href="#mark-rotate" x="-21" y="-146" width="42" height="42"/>
+    <circle cx="0" cy="140" r="13" fill="#171612"/>
+  </g>
+  <g id="tile-R" class="tile rotate" data-color="R" data-face="rotate" data-q="1" data-r="-1" data-rotation="0" transform="translate(726 914)">
+    <path class="left" d="M0-165-143-82.5V82.5L0 165Z"/><path class="right" d="M0-165 143-82.5V82.5L0 165Z"/>
+    <use class="mark-move" href="#mark-move" x="-21" y="-146" width="42" height="42"/><use class="mark-rotate" href="#mark-rotate" x="-21" y="-146" width="42" height="42"/>
+    <circle cx="0" cy="140" r="13" fill="#171612"/>
+  </g>
+
+  <!-- 貓咪起點：把 translate 改成對應板塊中心。 -->
+  <g id="cat-start" data-start-tile="Y" transform="translate(583 660)">
+    <image href="../icons/cat-silhouette.png" x="-105" y="-105" width="210" height="210" preserveAspectRatio="xMidYMid meet"/>
+  </g>
+</svg>
