@@ -10,6 +10,10 @@
 <body>
   <header class="editor-header"><span>內部管理工具</span><strong>迷路の貓 <small>PUZZLE MAKER</small></strong></header>
   <main class="editor-shell">
+    <section class="editor-preview">
+      <div><h2>直接在題目圖上操作</h2></div>
+      <div id="boardHost" class="board-host" aria-label="可拖曳題目板塊"></div>
+    </section>
     <section class="editor-controls">
       <p class="eyebrow">獨立題目生成器</p>
       <h1>建立新題目</h1>
@@ -25,11 +29,8 @@
         <button id="downloadPuzzle" type="button">題目 JSON</button>
         <button id="downloadAnswer" type="button">答案 JSON</button>
       </div>
+      <button id="downloadAll" class="download-all" type="button">⬇ 一鍵下載全部（PNG＋SVG＋題目／答案 JSON）</button>
       <p id="editorStatus" class="status" aria-live="polite"></p>
-    </section>
-    <section class="editor-preview">
-      <div><p class="eyebrow">即時預覽</p><h2>直接在題目圖上操作</h2><p>拖曳板塊可換位；雙擊或快速點兩下板塊可切換平移／旋轉；拖曳貓咪可改變起點。</p></div>
-      <div id="boardHost" class="board-host" aria-label="可拖曳題目板塊"></div>
     </section>
   </main>
   <script src="assets/cat-data.js"></script>

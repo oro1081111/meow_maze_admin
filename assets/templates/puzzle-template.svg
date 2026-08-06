@@ -37,12 +37,12 @@
 
   <g id="question-label" fill="#171612" font-family="Arial Black, Arial, sans-serif" font-weight="900">
     <text x="86" y="126" font-size="22" letter-spacing="4">PUZZLE</text>
-    <text id="puzzle-number" x="78" y="285" font-size="190">01</text>
+    <text id="puzzle-number" x="78" y="285" font-size="178">01</text>
   </g>
 
   <g id="best-moves-badge">
     <path d="M1010 82 1120 276 1010 326 900 276Z" fill="#8f9190"/>
-    <text id="best-moves" x="1010" y="220" fill="#fff" font-family="Arial Black, Arial, sans-serif" font-size="110" font-weight="900" text-anchor="middle">1</text>
+    <text id="best-moves" x="1010" y="234" fill="#fff" font-family="Arial Black, Arial, sans-serif" font-size="110" font-weight="900" text-anchor="middle">1</text>
     <text x="1010" y="274" fill="#fff" font-family="Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="2" text-anchor="middle">BEST</text>
   </g>
 
