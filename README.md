@@ -2,7 +2,14 @@
 
 《迷路の貓｜MEOW MAZE》的內部題目製作工具，與玩家網站分開管理。
 
-直接開啟 `index.html` 即可使用，不需要安裝套件或啟動伺服器。
+## 線上網址
+
+- 題目生成器：https://oro1081111.github.io/meow_maze_admin/
+- 可直接使用手機或電腦瀏覽器開啟，不需要安裝 App。
+
+網站會在推送至 `main` 分支後，由 GitHub Actions 自動部署到 GitHub Pages。
+
+直接開啟 `index.html` 也可在本機使用，不需要安裝套件或啟動伺服器。
 
 ## 功能
 
