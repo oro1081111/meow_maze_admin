@@ -1,0 +1,238 @@
+[
+  {
+    "schemaVersion": 1,
+    "id": "move-001",
+    "mode": "move",
+    "number": 1,
+    "status": "published",
+    "start": "Y",
+    "bestMoves": 1,
+    "legacy": true,
+    "legacyImage": "https://oro1081111.github.io/Meow_Maze_test/assets/space_puzzle/01.png",
+    "solution": {"steps": [
+      {"type":"event","event":"key"},
+      {"type":"moveTile","walkTo":"Y","tile":"R","relativeTo":"G","direction":"right"},
+      {"type":"event","event":"treasure"}
+    ]}
+  },
+  {
+    "schemaVersion": 1,
+    "id": "move-002",
+    "mode": "move",
+    "number": 2,
+    "status": "published",
+    "start": "R",
+    "bestMoves": 1,
+    "legacy": true,
+    "legacyImage": "https://oro1081111.github.io/Meow_Maze_test/assets/space_puzzle/02.png",
+    "solution": {"steps": [
+      {"type":"moveTile","walkTo":"R","tile":"Y","relativeTo":"B","direction":"left"},
+      {"type":"event","event":"key"},
+      {"type":"event","event":"treasure"}
+    ]}
+  },
+  {
+    "schemaVersion": 1,
+    "id": "move-003",
+    "mode": "move",
+    "number": 3,
+    "status": "published",
+    "start": "Y",
+    "bestMoves": 2,
+    "legacy": true,
+    "legacyImage": "https://oro1081111.github.io/Meow_Maze_test/assets/space_puzzle/03.png",
+    "solution": {"steps": [
+      {"type":"moveTile","walkTo":"G","tile":"B","relativeTo":"Y","direction":"right"},
+      {"type":"event","event":"key"},
+      {"type":"moveTile","walkTo":"Y","tile":"R","relativeTo":"P","direction":"upperRight"},
+      {"type":"event","event":"treasure"}
+    ]}
+  },
+  {
+    "schemaVersion": 1,
+    "id": "move-004",
+    "mode": "move",
+    "number": 4,
+    "status": "published",
+    "start": "G",
+    "bestMoves": 2,
+    "legacy": true,
+    "legacyImage": "https://oro1081111.github.io/Meow_Maze_test/assets/space_puzzle/04.png",
+    "solution": {"steps": [
+      {"type":"event","event":"key"},
+      {"type":"moveTile","walkTo":"R","tile":"Y","relativeTo":"B","direction":"lowerRight"},
+      {"type":"moveTile","walkTo":"Y","tile":"R","relativeTo":"B","direction":"right"},
+      {"type":"event","event":"treasure"}
+    ]}
+  },
+  {
+    "schemaVersion": 1,
+    "id": "move-005",
+    "mode": "move",
+    "number": 5,
+    "status": "published",
+    "start": "B",
+    "bestMoves": 2,
+    "legacy": true,
+    "legacyImage": "https://oro1081111.github.io/Meow_Maze_test/assets/space_puzzle/05.png",
+    "solution": {"steps": [
+      {"type":"event","event":"key"},
+      {"type":"moveTile","walkTo":"R","tile":"Y","relativeTo":"P","direction":"left"},
+      {"type":"moveTile","walkTo":"Y","tile":"R","relativeTo":"B","direction":"right"},
+      {"type":"event","event":"treasure"}
+    ]}
+  },
+  {
+    "schemaVersion": 1,
+    "id": "move-006",
+    "mode": "move",
+    "number": 6,
+    "status": "published",
+    "start": "P",
+    "bestMoves": 2,
+    "legacy": true,
+    "legacyImage": "https://oro1081111.github.io/Meow_Maze_test/assets/space_puzzle/06.png",
+    "solution": {"steps": [
+      {"type":"event","event":"key"},
+      {"type":"moveTile","walkTo":"R","tile":"P","relativeTo":"R","direction":"right"},
+      {"type":"moveTile","walkTo":"Y","tile":"R","relativeTo":"Y","direction":"upperRight"},
+      {"type":"event","event":"treasure"}
+    ]}
+  },
+  {
+    "schemaVersion": 1,
+    "id": "move-007",
+    "mode": "move",
+    "number": 7,
+    "status": "published",
+    "start": "B",
+    "bestMoves": 2,
+    "legacy": true,
+    "legacyImage": "https://oro1081111.github.io/Meow_Maze_test/assets/space_puzzle/07.png",
+    "solution": {"steps": [
+      {"type":"event","event":"key"},
+      {"type":"moveTile","walkTo":"R","tile":"Y","relativeTo":"R","direction":"lowerLeft"},
+      {"type":"moveTile","walkTo":"P","tile":"B","relativeTo":"Y","direction":"right"},
+      {"type":"event","event":"treasure"}
+    ]}
+  },
+  {
+    "schemaVersion": 1,
+    "id": "move-008",
+    "mode": "move",
+    "number": 8,
+    "status": "published",
+    "start": "R",
+    "bestMoves": 2,
+    "legacy": true,
+    "legacyImage": "https://oro1081111.github.io/Meow_Maze_test/assets/space_puzzle/08.png",
+    "solution": {"steps": [
+      {"type":"moveTile","walkTo":"R","tile":"Y","relativeTo":"R","direction":"lowerLeft"},
+      {"type":"moveTile","walkTo":"P","tile":"B","relativeTo":"Y","direction":"right"},
+      {"type":"event","event":"key"},
+      {"type":"event","event":"treasure"}
+    ]}
+  },
+  {
+    "schemaVersion": 1,
+    "id": "move-009",
+    "mode": "move",
+    "number": 9,
+    "status": "published",
+    "start": "R",
+    "bestMoves": 2,
+    "legacy": true,
+    "legacyImage": "https://oro1081111.github.io/Meow_Maze_test/assets/space_puzzle/09.png",
+    "solution": {"steps": [
+      {"type":"event","event":"key"},
+      {"type":"moveTile","walkTo":"R","tile":"Y","relativeTo":"R","direction":"lowerLeft"},
+      {"type":"moveTile","walkTo":"P","tile":"B","relativeTo":"Y","direction":"right"},
+      {"type":"event","event":"treasure"}
+    ]}
+  },
+  {
+    "schemaVersion": 1,
+    "id": "move-010",
+    "mode": "move",
+    "number": 10,
+    "status": "published",
+    "start": "P",
+    "bestMoves": 2,
+    "legacy": true,
+    "legacyImage": "https://oro1081111.github.io/Meow_Maze_test/assets/space_puzzle/10.png",
+    "solution": {"steps": [
+      {"type":"event","event":"key"},
+      {"type":"moveTile","walkTo":"G","tile":"B","relativeTo":"R","direction":"right"},
+      {"type":"moveTile","walkTo":"R","tile":"P","relativeTo":"Y","direction":"right"},
+      {"type":"event","event":"treasure"}
+    ]}
+  },
+  {
+    "schemaVersion": 1,
+    "id": "move-011",
+    "mode": "move",
+    "number": 11,
+    "status": "published",
+    "start": "R",
+    "bestMoves": 2,
+    "legacy": true,
+    "legacyImage": "https://oro1081111.github.io/Meow_Maze_test/assets/space_puzzle/11.png",
+    "solution": {"steps": [
+      {"type":"moveTile","walkTo":"P","tile":"B","relativeTo":"R","direction":"lowerRight"},
+      {"type":"moveTile","walkTo":"R","tile":"Y","relativeTo":"B","direction":"left"},
+      {"type":"event","event":"key"},
+      {"type":"event","event":"treasure"}
+    ]}
+  },
+  {
+    "schemaVersion": 1,
+    "id": "move-012",
+    "mode": "move",
+    "number": 12,
+    "status": "published",
+    "start": "R",
+    "bestMoves": 2,
+    "legacy": true,
+    "legacyImage": "https://oro1081111.github.io/Meow_Maze_test/assets/space_puzzle/12.png",
+    "solution": {"steps": [
+      {"type":"moveTile","walkTo":"B","tile":"G","relativeTo":"R","direction":"left"},
+      {"type":"moveTile","walkTo":"R","tile":"Y","relativeTo":"B","direction":"left"},
+      {"type":"event","event":"key"},
+      {"type":"event","event":"treasure"}
+    ]}
+  },
+  {
+    "schemaVersion": 1,
+    "id": "move-013",
+    "mode": "move",
+    "number": 13,
+    "status": "published",
+    "start": "G",
+    "bestMoves": 2,
+    "legacy": true,
+    "legacyImage": "https://oro1081111.github.io/Meow_Maze_test/assets/space_puzzle/13.png",
+    "solution": {"steps": [
+      {"type":"moveTile","walkTo":"B","tile":"G","relativeTo":"P","direction":"upperRight"},
+      {"type":"moveTile","walkTo":"R","tile":"Y","relativeTo":"B","direction":"left"},
+      {"type":"event","event":"key"},
+      {"type":"event","event":"treasure"}
+    ]}
+  },
+  {
+    "schemaVersion": 1,
+    "id": "move-014",
+    "mode": "move",
+    "number": 14,
+    "status": "published",
+    "start": "G",
+    "bestMoves": 2,
+    "legacy": true,
+    "legacyImage": "https://oro1081111.github.io/Meow_Maze_test/assets/space_puzzle/14.png",
+    "solution": {"steps": [
+      {"type":"event","event":"key"},
+      {"type":"moveTile","walkTo":"Y","tile":"R","relativeTo":"B","direction":"right"},
+      {"type":"moveTile","walkTo":"B","tile":"P","relativeTo":"Y","direction":"right"},
+      {"type":"event","event":"treasure"}
+    ]}
+  }
+]
