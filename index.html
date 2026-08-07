@@ -15,12 +15,12 @@
       <div id="boardHost" class="board-host" aria-label="可拖曳題目板塊"></div>
     </section>
     <section class="editor-controls">
-      <div class="field-grid">
+      <div class="solve-row">
         <label>題號<input id="puzzleNumber" type="number" min="1" max="999" value="1"></label>
         <label>最佳步數<input id="bestMoves" type="number" placeholder="待計算" readonly></label>
+        <button id="solvePuzzle" class="solve" type="button" aria-label="計算最佳解，最多 6 步">解答</button>
       </div>
-      <button id="solvePuzzle" class="solve" type="button">計算最佳解（最多 6 步）</button>
-      <label>最佳解<textarea id="answer" rows="5" placeholder="排好板塊後，按下「計算最佳解」。" readonly></textarea></label>
+      <label>最佳解<textarea id="answer" rows="5" placeholder="排好板塊後，按下「解答」。" readonly></textarea></label>
       <div class="export-grid">
         <button id="downloadPng" type="button">下載 PNG</button>
         <button id="downloadSvg" type="button">下載 SVG</button>
