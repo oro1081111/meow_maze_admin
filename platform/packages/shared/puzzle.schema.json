@@ -1,0 +1,132 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://meow-maze.pages.dev/schema/puzzle.schema.json",
+  "title": "Meow Maze Puzzle",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "schemaVersion",
+    "id",
+    "mode",
+    "number",
+    "status",
+    "start",
+    "bestMoves",
+    "positions",
+    "plateModes",
+    "rotations",
+    "solution"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "id": { "type": "string", "pattern": "^(move|rotate)-[0-9]{3}$" },
+    "mode": { "enum": ["move", "rotate"] },
+    "number": { "type": "integer", "minimum": 1, "maximum": 999 },
+    "status": { "enum": ["draft", "published", "archived"] },
+    "start": { "$ref": "#/$defs/color" },
+    "bestMoves": {
+      "oneOf": [
+        { "type": "null" },
+        { "type": "integer", "minimum": 0, "maximum": 6 }
+      ]
+    },
+    "positions": {
+      "type": "object",
+      "required": ["R", "B", "G", "Y", "P"],
+      "additionalProperties": false,
+      "properties": {
+        "R": { "$ref": "#/$defs/position" },
+        "B": { "$ref": "#/$defs/position" },
+        "G": { "$ref": "#/$defs/position" },
+        "Y": { "$ref": "#/$defs/position" },
+        "P": { "$ref": "#/$defs/position" }
+      }
+    },
+    "plateModes": {
+      "type": "object",
+      "required": ["R", "B", "G", "Y", "P"],
+      "additionalProperties": false,
+      "properties": {
+        "R": { "$ref": "#/$defs/mode" },
+        "B": { "$ref": "#/$defs/mode" },
+        "G": { "$ref": "#/$defs/mode" },
+        "Y": { "$ref": "#/$defs/mode" },
+        "P": { "$ref": "#/$defs/mode" }
+      }
+    },
+    "rotations": {
+      "type": "object",
+      "required": ["R", "B", "G", "Y", "P"],
+      "additionalProperties": false,
+      "properties": {
+        "R": { "$ref": "#/$defs/rotation" },
+        "B": { "$ref": "#/$defs/rotation" },
+        "G": { "$ref": "#/$defs/rotation" },
+        "Y": { "$ref": "#/$defs/rotation" },
+        "P": { "$ref": "#/$defs/rotation" }
+      }
+    },
+    "solution": {
+      "type": "object",
+      "required": ["steps"],
+      "properties": {
+        "steps": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              { "$ref": "#/$defs/eventStep" },
+              { "$ref": "#/$defs/moveStep" },
+              { "$ref": "#/$defs/rotateStep" }
+            ]
+          }
+        }
+      }
+    },
+    "updatedAt": { "type": ["string", "null"], "format": "date-time" },
+    "updatedBy": { "type": ["string", "null"] }
+  },
+  "$defs": {
+    "color": { "enum": ["R", "B", "G", "Y", "P"] },
+    "mode": { "enum": ["move", "rotate"] },
+    "rotation": { "enum": [0, 1, 2] },
+    "position": {
+      "type": "array",
+      "prefixItems": [{ "type": "integer" }, { "type": "integer" }],
+      "minItems": 2,
+      "maxItems": 2
+    },
+    "eventStep": {
+      "type": "object",
+      "required": ["type", "event"],
+      "properties": {
+        "type": { "const": "event" },
+        "event": { "enum": ["key", "treasure"] }
+      },
+      "additionalProperties": false
+    },
+    "moveStep": {
+      "type": "object",
+      "required": ["type", "walkTo", "tile", "relativeTo", "direction"],
+      "properties": {
+        "type": { "const": "moveTile" },
+        "walkTo": { "$ref": "#/$defs/color" },
+        "tile": { "$ref": "#/$defs/color" },
+        "relativeTo": { "$ref": "#/$defs/color" },
+        "direction": { "enum": ["right", "upperRight", "upperLeft", "left", "lowerLeft", "lowerRight"] }
+      },
+      "additionalProperties": false
+    },
+    "rotateStep": {
+      "type": "object",
+      "required": ["type", "walkTo", "tile", "rotation", "degrees"],
+      "properties": {
+        "type": { "const": "rotateTile" },
+        "walkTo": { "$ref": "#/$defs/color" },
+        "tile": { "$ref": "#/$defs/color" },
+        "rotation": { "enum": ["clockwise", "counterclockwise"] },
+        "degrees": { "const": 120 }
+      },
+      "additionalProperties": false
+    }
+  }
+}
