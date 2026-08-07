@@ -8,24 +8,25 @@ body{margin:0;background:var(--paper);color:var(--ink);font-family:"Noto Sans TC
 .editor-header small{display:block;font-size:.55rem;letter-spacing:.18em;text-align:right}
 .editor-shell{display:grid;grid-template-columns:1fr;gap:22px;width:min(1180px,calc(100% - 28px));margin:24px auto}
 .editor-controls,.editor-preview{border:var(--line);border-radius:20px;background:var(--light);box-shadow:6px 6px 0 #17161222}
-.editor-controls{padding:22px}
+.editor-controls{padding:18px}
 .editor-controls h1,.editor-preview h2{margin:0 0 16px}
-.field-grid{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:8px}
-.field-grid>label{min-width:0;margin-top:0}
-label{display:block;margin:13px 0 6px;font-size:.78rem;font-weight:900}
+.field-grid{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:6px}
+.field-grid>label{min-width:0;margin:0}
+label{display:block;margin:9px 0 4px;font-size:.72rem;font-weight:900}
 input,textarea,button{font:inherit}
-input,textarea{width:100%;min-width:0;min-height:44px;margin-top:5px;padding:9px 11px;border:var(--line);border-radius:9px;background:#fff;font-size:16px}
+input,textarea{width:100%;min-width:0;margin-top:3px;padding:6px 8px;border:var(--line);border-radius:8px;background:#fff;font-size:16px}
+input{height:36px;min-height:36px}
 input[readonly],textarea[readonly]{background:#f5f1df}
-textarea{resize:vertical}
-.export-grid button,.ghost,.solve{min-height:42px;border:var(--line);border-radius:9px;background:#fff;font-size:.75rem;font-weight:900;cursor:pointer;touch-action:manipulation}
-.solve{width:100%;margin-top:16px;background:var(--ink);color:#fff}
+textarea{min-height:92px;resize:vertical;line-height:1.35}
+.export-grid button,.ghost,.solve{min-height:36px;border:var(--line);border-radius:8px;background:#fff;font-size:.72rem;font-weight:900;cursor:pointer;touch-action:manipulation}
+.solve{width:100%;margin-top:9px;background:var(--ink);color:#fff}
 .solve:disabled{cursor:wait;opacity:.65}
-.ghost{width:100%;margin-top:14px;background:transparent}
-.export-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+.ghost{width:100%;margin-top:10px;background:transparent}
+.export-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:9px}
 .export-grid button{background:var(--red)}
-.download-all{width:100%;margin-top:12px;min-height:48px;border:var(--line);border-radius:9px;background:#008c55;color:#fff;font-size:.82rem;font-weight:900;cursor:pointer;touch-action:manipulation}
+.download-all{width:100%;margin-top:9px;min-height:40px;border:var(--line);border-radius:8px;background:#008c55;color:#fff;font-size:.76rem;font-weight:900;cursor:pointer;touch-action:manipulation}
 .download-all:disabled{cursor:wait;opacity:.65}
-.status{min-height:1.4em;margin:10px 0 0;color:#6e6654;font-size:.72rem}
+.status{min-height:1.2em;margin:7px 0 0;color:#6e6654;font-size:.68rem}
 .editor-preview{min-width:0;padding:22px}
 .editor-preview>div:first-child p:last-child{margin:0;color:#6e6654;font-size:.8rem}
 .board-host{max-width:760px;margin:12px auto 0}
@@ -37,14 +38,18 @@ textarea{resize:vertical}
   .editor-header{min-height:54px;padding:8px 12px}
   .editor-header span{font-size:.78rem}
   .editor-header strong{font-size:.82rem}
-  .editor-shell{grid-template-columns:1fr;gap:12px;width:calc(100% - 16px);margin:8px auto 14px}
+  .editor-shell{grid-template-columns:1fr;gap:10px;width:calc(100% - 16px);margin:8px auto 12px}
   .editor-controls,.editor-preview{border-radius:15px;box-shadow:3px 3px 0 #1716121f}
   .editor-preview{padding:10px}
   .editor-preview h2{margin-bottom:8px;font-size:1rem}
-  .editor-controls{padding:14px}
+  .editor-controls{padding:10px 12px}
   .board-host{margin-top:6px}
 }
 @media(max-width:390px){
-  .field-grid{grid-template-columns:minmax(0,.78fr) minmax(0,1.22fr);gap:6px}
-  .editor-controls{padding:12px}
+  .field-grid{grid-template-columns:minmax(0,.78fr) minmax(0,1.22fr);gap:5px}
+  .editor-controls{padding:9px 10px}
+  label{font-size:.68rem}
+  input{height:34px;min-height:34px;padding:5px 7px}
+  .solve{min-height:34px;margin-top:7px}
+  textarea{min-height:82px}
 }
