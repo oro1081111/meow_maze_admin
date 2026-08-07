@@ -1,0 +1,49 @@
+name: Import Legacy Meow Maze Puzzles
+
+on:
+  push:
+    branches:
+      - platform-v1
+    paths:
+      - ".github/workflows/platform-import-legacy.yml"
+      - "platform/scripts/import-legacy.mjs"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout platform branch
+        uses: actions/checkout@v6
+        with:
+          ref: platform-v1
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+
+      - name: Discover and import source puzzle files
+        working-directory: platform
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node scripts/import-legacy.mjs
+
+      - name: Validate imported data
+        working-directory: platform
+        run: node scripts/validate.mjs
+
+      - name: Commit imported puzzle data
+        run: |
+          if git diff --quiet -- platform/data; then
+            echo "No import changes were found."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add platform/data
+          git commit -m "Import legacy puzzle source data"
+          git push origin platform-v1
