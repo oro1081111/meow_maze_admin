@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#efe9b8">
+  <title>題庫管理｜迷路の貓</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="admin-header">
+    <div><small>內部管理工具</small><strong>迷路の貓 <span>PUZZLE MANAGER</span></strong></div>
+    <div id="accountArea"><a id="loginButton" class="button dark" href="/api/auth/login">使用 GitHub 登入</a></div>
+  </header>
+
+  <main>
+    <section id="loginRequired" class="login-card">
+      <h1>請先登入管理者帳號</h1>
+      <p>只有允許名單中的 GitHub 帳號可以新增、更新或下架題目。</p>
+      <a class="button dark" href="/api/auth/login">使用 GitHub 登入</a>
+    </section>
+
+    <section id="editor" class="editor" hidden>
+      <section class="preview-panel">
+        <div class="section-title"><div><small>PUZZLE PREVIEW</small><h1>直接排列題目</h1></div><span id="dirtyBadge" hidden>尚未儲存</span></div>
+        <div id="boardHost" class="board-host" aria-label="可拖曳題目板塊"></div>
+        <div id="tileControls" class="tile-controls" aria-label="板塊面與旋轉設定"></div>
+      </section>
+
+      <aside class="control-panel">
+        <div class="field-grid">
+          <label>遊戲模式
+            <select id="puzzleMode">
+              <option value="move">貓跳台</option>
+              <option value="rotate">貓拼布</option>
+            </select>
+          </label>
+          <label>題號
+            <input id="puzzleNumber" type="number" min="1" max="999" value="1">
+          </label>
+          <label>發布狀態
+            <select id="puzzleStatus">
+              <option value="draft">草稿</option>
+              <option value="published">已發布</option>
+              <option value="archived">已下架</option>
+            </select>
+          </label>
+          <label>最佳步數
+            <input id="bestMoves" type="number" readonly placeholder="待計算">
+          </label>
+        </div>
+
+        <div class="action-row">
+          <button id="loadPuzzle" type="button">載入現有題目</button>
+          <button id="newPuzzle" type="button">建立空白題目</button>
+        </div>
+
+        <button id="solvePuzzle" class="button dark full" type="button">計算最佳解（最多 6 步）</button>
+
+        <section class="answer-preview">
+          <div class="answer-tabs" role="tablist">
+            <button type="button" data-answer-language="zh" class="active">繁中</button>
+            <button type="button" data-answer-language="ja">日本語</button>
+            <button type="button" data-answer-language="en">English</button>
+          </div>
+          <pre id="answerText">排好板塊後，按下「計算最佳解」。</pre>
+        </section>
+
+        <section id="changeSummary" class="change-summary" hidden>
+          <h2>發布變更</h2>
+          <ul id="changeList"></ul>
+        </section>
+
+        <div class="publish-grid">
+          <button id="saveDraft" type="button">儲存草稿</button>
+          <button id="publishPuzzle" class="button dark" type="button">發布新題目</button>
+          <button id="archivePuzzle" class="danger" type="button">下架題目</button>
+        </div>
+
+        <details>
+          <summary>進階功能／下載備份</summary>
+          <div class="backup-grid">
+            <button id="downloadSvg" type="button">下載 SVG</button>
+            <button id="downloadJson" type="button">下載題目 JSON</button>
+          </div>
+        </details>
+
+        <p id="editorStatus" class="status" aria-live="polite"></p>
+      </aside>
+    </section>
+  </main>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
