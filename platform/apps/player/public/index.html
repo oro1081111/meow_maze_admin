@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#efe9b8">
+  <title>迷路の貓｜MEOW MAZE</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="paper" aria-hidden="true"></div>
+  <header>
+    <a class="brand" href="#/">
+      <span class="cat-logo" aria-hidden="true">●</span>
+      <span><b>迷路の貓</b><small>MEOW MAZE</small></span>
+    </a>
+    <nav>
+      <a href="#/" data-copy="home">首頁</a>
+      <a href="#/puzzles" data-copy="puzzles">題目一覽</a>
+      <a href="#/how" data-copy="how">遊戲方式</a>
+    </nav>
+    <div class="language">
+      <button id="languageButton" type="button" aria-haspopup="true">◎ <span id="languageLabel">繁中</span>⌄</button>
+      <div id="languageMenu" hidden>
+        <button type="button" data-language="zh">繁體中文</button>
+        <button type="button" data-language="ja">日本語</button>
+        <button type="button" data-language="en">English</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="app" aria-live="polite"></main>
+
+  <template id="homeTemplate">
+    <section class="home shell">
+      <p class="eyebrow" data-copy="physicalDigital">實體桌遊 × 數位題庫</p>
+      <h1>迷路の貓<small>MEOW MAZE</small></h1>
+      <p class="lead" data-copy="homeLead">選擇題目、擺好五片六角板塊，取得鑰匙並開啟寶箱。</p>
+      <div class="mode-links">
+        <a href="#/puzzles?mode=move"><span>↔</span><div><small>01</small><b data-copy="moveMode">貓跳台</b><em data-copy="moveDescription">板塊只能平移</em></div><strong>→</strong></a>
+        <a href="#/puzzles?mode=rotate"><span>↻</span><div><small>02</small><b data-copy="rotateMode">貓拼布</b><em data-copy="rotateDescription">板塊只能旋轉</em></div><strong>→</strong></a>
+      </div>
+      <a class="button" href="#/how">? <span data-copy="learn">了解玩法</span></a>
+    </section>
+  </template>
+
+  <template id="listTemplate">
+    <section class="list shell">
+      <p class="eyebrow" data-copy="challenge">挑戰清單</p>
+      <h1 data-copy="choosePuzzle">今天想挑戰哪一題？</h1>
+      <div class="progress"><b id="progressText">0 / 0</b><small data-copy="completed">已完成</small><i><span id="progressBar"></span></i></div>
+      <div class="filters">
+        <div class="tabs">
+          <button type="button" data-mode="move" data-copy="moveMode">貓跳台</button>
+          <button type="button" data-mode="rotate" data-copy="rotateMode">貓拼布</button>
+        </div>
+        <select id="statusFilter">
+          <option value="all" data-copy="allStatus">所有狀態</option>
+          <option value="new" data-copy="notPlayed">未遊玩</option>
+          <option value="done" data-copy="completed">已完成</option>
+        </select>
+      </div>
+      <div id="puzzleGrid" class="puzzle-grid"></div>
+      <p id="emptyState" class="empty" hidden data-copy="noPuzzles">目前沒有已發布題目。</p>
+    </section>
+  </template>
+
+  <template id="detailTemplate">
+    <section class="detail shell">
+      <a class="back" href="#/puzzles">← <span data-copy="back">返回題庫</span></a>
+      <div class="detail-card">
+        <div class="puzzle-image"><img id="detailImage" alt=""></div>
+        <div class="stars" aria-label="遊玩進度">
+          <button type="button" data-star="1">★</button>
+          <button type="button" data-star="2">★</button>
+          <button type="button" data-star="3">★</button>
+        </div>
+        <div class="answer">
+          <button id="answerButton" type="button" aria-expanded="false"><span data-copy="viewAnswer">查看解答</span><b>＋</b></button>
+          <pre id="answerText" hidden></pre>
+        </div>
+        <div class="detail-nav"><a id="previousPuzzle" class="button" href="#">← <span data-copy="previous">上一題</span></a><a id="nextPuzzle" class="button" href="#"><span data-copy="next">下一題</span> →</a></div>
+      </div>
+    </section>
+  </template>
+
+  <template id="howTemplate">
+    <section class="how shell">
+      <p class="eyebrow" data-copy="how">遊戲方式</p>
+      <h1 data-copy="howTitle">題目在手機，解謎在手上</h1>
+      <ol>
+        <li><b>1</b><div><h2 data-copy="step1">選擇模式與題目</h2><p data-copy="step1Text">依照想玩的規則挑一題。</p></div></li>
+        <li><b>2</b><div><h2 data-copy="step2">照畫面擺好板塊</h2><p data-copy="step2Text">確認顏色、面別、位置、角度與貓咪起點。</p></div></li>
+        <li><b>3</b><div><h2 data-copy="step3">取得鑰匙並開啟寶箱</h2><p data-copy="step3Text">「走到」代表貓咪移動；「移至／旋轉」代表操作板塊。</p></div></li>
+      </ol>
+      <a class="button primary" href="#/puzzles" data-copy="start">開始挑戰</a>
+    </section>
+  </template>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
