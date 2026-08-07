@@ -15,11 +15,9 @@
       <div id="boardHost" class="board-host" aria-label="可拖曳題目板塊"></div>
     </section>
     <section class="editor-controls">
-      <p class="eyebrow">獨立題目生成器</p>
-      <h1>建立新題目</h1>
       <div class="field-grid">
         <label>題號<input id="puzzleNumber" type="number" min="1" max="999" value="1"></label>
-        <label>最佳步數<input id="bestMoves" type="number" placeholder="計算後產生" readonly></label>
+        <label>最佳步數<input id="bestMoves" type="number" placeholder="待計算" readonly></label>
       </div>
       <button id="solvePuzzle" class="solve" type="button">計算最佳解（最多 6 步）</button>
       <label>最佳解<textarea id="answer" rows="8" placeholder="排好板塊後，按下「計算最佳解」。" readonly></textarea></label>
