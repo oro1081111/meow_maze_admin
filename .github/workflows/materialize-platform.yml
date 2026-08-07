@@ -1,0 +1,41 @@
+name: Materialize Meow Maze platform
+
+on:
+  push:
+    branches:
+      - platform-v1
+    paths:
+      - platform/bootstrap.mjs
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout platform branch
+        uses: actions/checkout@v4
+        with:
+          ref: platform-v1
+          fetch-depth: 0
+
+      - name: Materialize platform files
+        run: node platform/bootstrap.mjs
+
+      - name: Verify platform
+        working-directory: platform
+        run: npm test
+
+      - name: Commit generated platform
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add platform
+          if git diff --cached --quiet; then
+            echo "No generated changes"
+          else
+            git commit -m "建立迷路の貓整合平台"
+            git push origin platform-v1
+          fi

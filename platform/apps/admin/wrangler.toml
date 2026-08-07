@@ -1,0 +1,3 @@
+name = "meow-maze-admin"
+pages_build_output_dir = "../../dist/admin"
+compatibility_date = "2026-08-07"

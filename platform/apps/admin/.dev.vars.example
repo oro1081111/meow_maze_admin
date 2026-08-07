@@ -1,0 +1,8 @@
+GITHUB_OAUTH_CLIENT_ID=replace_me
+GITHUB_OAUTH_CLIENT_SECRET=replace_me
+GITHUB_TOKEN=github_pat_replace_me
+SESSION_SECRET=replace_with_at_least_32_random_bytes
+ALLOWED_GITHUB_USERS=oro1081111
+GITHUB_REPOSITORY=oro1081111/meow_maze_admin
+GITHUB_BRANCH=platform-v1
+PLATFORM_ROOT=platform
